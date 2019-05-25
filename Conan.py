@@ -2,7 +2,21 @@ import struct
 
 
 def tamper(student_id):
-  pass
+  with open('lenna.bmp','r+b')as f:#以二进制方式打开文件
+   f.seek(54)#找到最后一行
+   f.read(3)#从当前位置起，读取三个字节
+  for i in student_id:
+        if i==0:
+              i=10
+              i+=1#跳过i个格子改下一个格子的像素点吗
+              f.read(i*3)
+              black=b'\x00\x00\x00'
+              f.write(black)
+  f.close()
+
+
+        
+        
 
 
 def detect():
